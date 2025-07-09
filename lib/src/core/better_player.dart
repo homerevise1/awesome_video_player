@@ -175,7 +175,17 @@ class _BetterPlayerState extends State<BetterPlayer>
       body: Container(
         alignment: Alignment.center,
         color: Colors.black,
-        child: controllerProvider,
+        child: Stack(
+          children: [
+            controllerProvider,
+            Image.network(
+                'https://c7.alamy.com/comp/MR0G79/random-pictures-MR0G79.jpg',
+            height: 40,
+              width: 80,
+              fit: BoxFit.cover,
+            ),
+          ],
+        ),
       ),
     );
   }
