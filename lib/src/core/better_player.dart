@@ -182,7 +182,7 @@ class _BetterPlayerState extends State<BetterPlayer>
               child: Opacity(
                 opacity: 0.1,
                 child: Image.network(
-                    'https://c7.alamy.com/comp/MR0G79/random-pictures-MR0G79.jpg',
+                    'https://homerevise.co.in/assets/img/hr-logo-copy.jpg',
                 height: 80,
                   width: 80,
                   fit: BoxFit.cover,
