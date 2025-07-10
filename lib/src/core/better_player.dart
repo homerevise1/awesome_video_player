@@ -178,14 +178,20 @@ class _BetterPlayerState extends State<BetterPlayer>
         child: Stack(
           children: [
             controllerProvider,
-            Positioned.fill(
-              child: Opacity(
-                opacity: 0.1,
-                child: Image.network(
-                    'https://homerevise.co.in/assets/img/hr-logo-copy.jpg',
-                height: 80,
-                  width: 80,
-                  fit: BoxFit.cover,
+            Positioned(
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Opacity(
+                  opacity: 0.1,
+                  child: Image.network(
+                      'https://homerevise.co.in/assets/img/hr-logo-copy.jpg',
+                  height: 80,
+                    width: 80,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             ),
