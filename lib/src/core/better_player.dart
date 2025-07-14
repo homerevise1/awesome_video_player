@@ -181,7 +181,7 @@ class _BetterPlayerState extends State<BetterPlayer>
           children: [
             controllerProvider,
             WatermarkAnimation(
-              watermarkText: _betterPlayerConfiguration.watermark ?? '34534534',
+              watermarkText: _betterPlayerConfiguration.watermark ?? '',
               logoUrl: 'https://homerevise.co.in/assets/img/hr-logo-copy.jpg',
               backgroundColor: const Color.fromARGB(255, 47, 89, 151),
               textColor: Colors.redAccent,
