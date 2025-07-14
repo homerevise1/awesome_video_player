@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:awesome_video_player/awesome_video_player.dart';
 import 'package:awesome_video_player/src/configuration/better_player_controller_event.dart';
 import 'package:awesome_video_player/src/core/better_player_utils.dart';
 import 'package:awesome_video_player/src/core/better_player_with_controls.dart';
+import 'package:awesome_video_player/src/core/water_mark.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -13,26 +15,26 @@ class BetterPlayer extends StatefulWidget {
   const BetterPlayer({Key? key, required this.controller}) : super(key: key);
 
   factory BetterPlayer.network(
-    String url, {
-    BetterPlayerConfiguration? betterPlayerConfiguration,
-  }) =>
+      String url, {
+        BetterPlayerConfiguration? betterPlayerConfiguration,
+      }) =>
       BetterPlayer(
         controller: BetterPlayerController(
           betterPlayerConfiguration ?? const BetterPlayerConfiguration(),
           betterPlayerDataSource:
-              BetterPlayerDataSource(BetterPlayerDataSourceType.network, url),
+          BetterPlayerDataSource(BetterPlayerDataSourceType.network, url),
         ),
       );
 
   factory BetterPlayer.file(
-    String url, {
-    BetterPlayerConfiguration? betterPlayerConfiguration,
-  }) =>
+      String url, {
+        BetterPlayerConfiguration? betterPlayerConfiguration,
+      }) =>
       BetterPlayer(
         controller: BetterPlayerController(
           betterPlayerConfiguration ?? const BetterPlayerConfiguration(),
           betterPlayerDataSource:
-              BetterPlayerDataSource(BetterPlayerDataSourceType.file, url),
+          BetterPlayerDataSource(BetterPlayerDataSourceType.file, url),
         ),
       );
 
@@ -178,25 +180,15 @@ class _BetterPlayerState extends State<BetterPlayer>
         child: Stack(
           children: [
             controllerProvider,
-            Positioned(
-              top: 0,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: IgnorePointer(
-                ignoring: true,
-                child: Center(
-                  child: Opacity(
-                    opacity: 0.1,
-                    child: Image.network(
-                        'https://homerevise.co.in/assets/img/hr-logo-copy.jpg',
-                    height: 80,
-                      width: 80,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ),
+            WatermarkAnimation(
+              watermarkText: _betterPlayerConfiguration.watermark ?? '34534534',
+              logoUrl: 'https://homerevise.co.in/assets/img/hr-logo-copy.jpg',
+              backgroundColor: const Color.fromARGB(255, 47, 89, 151),
+              textColor: Colors.redAccent,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              movementInterval: const Duration(seconds: 3),
+              animationDuration: const Duration(milliseconds: 1500),
             ),
           ],
         ),
@@ -218,10 +210,10 @@ class _BetterPlayerState extends State<BetterPlayer>
   }
 
   Widget _fullScreenRoutePageBuilder(
-    BuildContext context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-  ) {
+      BuildContext context,
+      Animation<double> animation,
+      Animation<double> secondaryAnimation,
+      ) {
     final controllerProvider = BetterPlayerControllerProvider(
         controller: widget.controller, child: _buildPlayer());
 

@@ -118,7 +118,9 @@ class BetterPlayerConfiguration {
   ///Default value is false.
   final bool useRootNavigator;
 
-  const BetterPlayerConfiguration({
+  final String? watermark;
+
+  const BetterPlayerConfiguration( {
     this.aspectRatio,
     this.autoPlay = false,
     this.startAt,
@@ -156,6 +158,7 @@ class BetterPlayerConfiguration {
     this.autoDispose = true,
     this.expandToFill = true,
     this.useRootNavigator = false,
+    this.watermark,
   });
 
   BetterPlayerConfiguration copyWith({
@@ -228,6 +231,7 @@ class BetterPlayerConfiguration {
       autoDispose: autoDispose ?? this.autoDispose,
       expandToFill: expandToFill ?? this.expandToFill,
       useRootNavigator: useRootNavigator ?? this.useRootNavigator,
+      watermark: watermark,
     );
   }
 }
